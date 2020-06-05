@@ -7,12 +7,14 @@ namespace Arg2009\Selectel;
 use Arg2009\Selectel\Entities\AuthenticateEntity;
 use Arg2009\Selectel\Entities\Http\Request\AuthenticateRequestEntity as AuthenticateRequestEntity;
 use Arg2009\Selectel\Entities\Http\Response\ResolveInfoEntity;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 
-class Cli
+class Client
 {
-    const SELECTEL_RESOLVE_URI = 'https://api.selvpc.ru/info/v2/resolve/';
+    const SELECTEL_RESOLVE_URI = 'https://api.selvpc.ru/info/v2/resolve';
     const SELECTEL_AUTHENTICATE_URI = 'https://api.selvpc.ru/identity/v3/auth/tokens';
+    const SELECTEL_K8S_CLUSTERS_URI = 'https://ru-2.mks.selcloud.ru/v1/clusters';
+
     const X_AUTH_TOKEN_HEADER = 'X-Auth-Token';
     const X_SUBJECT_TOKEN_HEADER = 'X-Subject-Token';
 
@@ -21,7 +23,7 @@ class Cli
 
     public function __construct()
     {
-        $this->guzzleClient = new Client();
+        $this->guzzleClient = new GuzzleClient();
     }
 
     /**
@@ -38,9 +40,20 @@ class Cli
     {
         return new ResolveInfoEntity(
             $this->guzzleClient
-            ->get(self::SELECTEL_RESOLVE_URI . $externalPanelCname)
+            ->get(self::SELECTEL_RESOLVE_URI . '/' . $externalPanelCname)
             ->getBody()
             ->getContents()
+        );
+    }
+
+    public function k8sDownloadKubeConfig(string $clusterId, string $savePath = './config-k8s-selectel')
+    {
+        $this->guzzleClient->get(
+            self::SELECTEL_K8S_CLUSTERS_URI . "/$clusterId/kubeconfig",
+            [
+                'sink' => $savePath,
+                'headers' => $this->getAuthenticationHeaders()
+            ]
         );
     }
 
