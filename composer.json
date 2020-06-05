@@ -2,7 +2,7 @@
     "name": "arg2009/selectel-client",
     "description": "A Client for the Selectel API",
     "type": "library",
-    "license": "GNU General Public License v3.0",
+    "license": "GPL-3.0-only",
     "authors": [
         {
             "name": "Ruben Funai",
