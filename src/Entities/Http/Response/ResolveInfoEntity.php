@@ -28,8 +28,8 @@ use Arg2009\Selectel\Entities\AbstractEntity;
  */
 class ResolveInfoEntity extends AbstractEntity
 {
-    private $projectId;
-    private $domainId;
+    protected $domainId;
+    protected $projectId;
 
     public function __construct(string $jsonPayload)
     {

@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace Arg2009\Selectel;
 
+use Arg2009\Selectel\Entities\AuthenticateEntity;
+use Arg2009\Selectel\Entities\Http\Request\AuthenticateRequestEntity as AuthenticateRequestEntity;
 use Arg2009\Selectel\Entities\Http\Response\ResolveInfoEntity;
 use GuzzleHttp\Client;
 
 class Cli
 {
-    const SELECTEL_RESOLVE_URI = "https://api.selvpc.ru/info/v2/resolve/";
+    const SELECTEL_RESOLVE_URI = 'https://api.selvpc.ru/info/v2/resolve/';
+    const SELECTEL_AUTHENTICATE_URI = 'https://api.selvpc.ru/identity/v3/auth/tokens';
+    const X_AUTH_TOKEN_HEADER = 'X-Auth-Token';
+    const X_SUBJECT_TOKEN_HEADER = 'X-Subject-Token';
 
     private $guzzleClient;
+    private $authToken;
 
     public function __construct()
     {
@@ -36,6 +42,59 @@ class Cli
             ->getBody()
             ->getContents()
         );
+    }
+
+    /**
+     * Retrieves an authentication token to interact with the Selectel API.
+     *
+     * @param AuthenticateEntity $entity
+     */
+    public function authenticate(AuthenticateEntity $entity)
+    {
+        $requestEntity = new AuthenticateRequestEntity(
+            $entity->username,
+            $entity->password,
+            $entity->domainId,
+            $entity->projectId
+        );
+
+        $response = $this->guzzleClient
+            ->post(
+                self::SELECTEL_AUTHENTICATE_URI,
+                [
+                    'body' => '' . $requestEntity
+                ]
+            );
+
+        $this->authToken = $response->getHeader(self::X_SUBJECT_TOKEN_HEADER);
+    }
+
+    /**
+     * Revokes an the access token.
+     */
+    public function unAuthenticate(): void
+    {
+        $response = $this->guzzleClient->delete(
+            self::SELECTEL_AUTHENTICATE_URI,
+            [
+                'headers'  => array_merge(
+                    $this->getAuthenticationHeaders(),
+                    [self::X_SUBJECT_TOKEN_HEADER => $this->authToken]
+                )
+            ]
+        );
+    }
+
+    /**
+     * Returns the headers required to make authenticated requests.
+     *
+     * @return array
+     */
+    private function getAuthenticationHeaders()
+    {
+        return [
+            self::X_AUTH_TOKEN_HEADER => $this->authToken
+        ];
     }
 }
 
