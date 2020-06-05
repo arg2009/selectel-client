@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Arg2009\Selectel\Entities;
+namespace Arg2009\Selectel\Client\Entities;
 
 /**
  * Class AuthenticateEntity
- * @package Arg2009\Selectel\Entities
+ * @package Arg2009\Selectel\Client\Entities
  *
  * @property-read string username
  * @property-read string password

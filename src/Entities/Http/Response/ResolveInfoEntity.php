@@ -1,12 +1,12 @@
 <?php
 
-namespace Arg2009\Selectel\Entities\Http\Response;
+namespace Arg2009\Selectel\Client\Entities\Http\Response;
 
-use Arg2009\Selectel\Entities\AbstractEntity;
+use Arg2009\Selectel\Client\Entities\AbstractEntity;
 
 /**
  * Class ResolveInfoEntity
- * @package Arg2009\Selectel\Entities\Http\Response
+ * @package Arg2009\Selectel\Client\Entities\Http\Response
  *
  * @property-read string $projectId
  * @property-read string $domainId

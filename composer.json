@@ -1,6 +1,6 @@
 {
-    "name": "arg2009/selectel-cli",
-    "description": "A CLI for the Selectel API",
+    "name": "arg2009/selectel-client",
+    "description": "A Client for the Selectel API",
     "type": "library",
     "license": "GNU General Public License v3.0",
     "authors": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Arg2009\\Selectel\\": "src/"
+            "Arg2009\\Selectel\\Client\\": "src/"
         }
     }
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Arg2009\Selectel;
+namespace Arg2009\Selectel\Client;
 
-use Arg2009\Selectel\Entities\AuthenticateEntity;
-use Arg2009\Selectel\Entities\Http\Request\AuthenticateRequestEntity as AuthenticateRequestEntity;
-use Arg2009\Selectel\Entities\Http\Response\ResolveInfoEntity;
+use Arg2009\Selectel\Client\Entities\AuthenticateEntity;
+use Arg2009\Selectel\Client\Entities\Http\Request\AuthenticateRequestEntity as AuthenticateRequestEntity;
+use Arg2009\Selectel\Client\Entities\Http\Response\ResolveInfoEntity;
 use GuzzleHttp\Client as GuzzleClient;
 
 class Client

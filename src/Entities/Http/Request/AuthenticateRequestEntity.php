@@ -1,10 +1,10 @@
 <?php
 
-namespace Arg2009\Selectel\Entities\Http\Request;
+namespace Arg2009\Selectel\Client\Entities\Http\Request;
 
 /**
  * Class AuthenticateRequestEntity
- * @package Arg2009\Selectel\Entities\Http\Request
+ * @package Arg2009\Selectel\Client\Entities\Http\Request
  *
  * Sample Request Payload:
 {
