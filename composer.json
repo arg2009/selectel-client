@@ -1,0 +1,14 @@
+{
+    "name": "arg2009/selectel-cli",
+    "description": "A CLI for the Selectel API",
+    "type": "library",
+    "license": "GNU General Public License v3.0",
+    "authors": [
+        {
+            "name": "Ruben Funai",
+            "email": "ruben.funai@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
