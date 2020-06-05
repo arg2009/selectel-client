@@ -2,7 +2,7 @@
 
 Selectel: [https://selectel.ru/en/](https://selectel.ru/en/)
 
-Note: This client is just to satisfy my requirements. It is by no means a complete CLI to the entire Selectel API.
+Note: This client is just to satisfy my requirements. It is by no means a complete client to the entire Selectel API.
 
 ## What it can do
 
@@ -16,4 +16,4 @@ See the file `example/download_kubectl_config.php`
 
 1. Create an External Panel User
 2. Grant it access to your Project containing your Kubernetes cluster
-3. Take note of the username, password, external panel cnam and kubernetes ID
+3. Take note of the username, password, external panel cname and kubernetes ID
